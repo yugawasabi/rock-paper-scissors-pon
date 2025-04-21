@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>じゃんけんゲーム</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100vw;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50% auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      background-color: #ffffffdd;
+      border-radius: 12px;
+      padding: 40px;
+    }
+
+    #result {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      min-height: 3rem;
+    }
+
+    #character {
+      width: 200px;
+      height: 200px;
+      background-image: url('https://via.placeholder.com/200');
+      background-size: cover;
+      margin: 20px auto;
+      transition: background-image 0.3s;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .janken-button {
+      padding: 15px 25px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+    }
+
+    .janken-button:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .janken-button {
+        width: 80%;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="result"></div>
+    <div id="character"></div>
+    <div class="buttons">
+      <button class="janken-button" data-choice="グー">✊ グー</button>
+      <button class="janken-button" data-choice="チョキ">✌️ チョキ</button>
+      <button class="janken-button" data-choice="パー">🖐 パー</button>
+    </div>
+  </div>
+
+  <script>
+    const hands = ["グー", "チョキ", "パー"];
+
+    function getResult(user, enemy) {
+      if (user === enemy) return "draw";
+      if ((user === "グー" && enemy === "チョキ") ||
+          (user === "チョキ" && enemy === "パー") ||
+          (user === "パー" && enemy === "グー")) return "win";
+      return "lose";
+    }
+
+    function updateCharacterFace(result) {
+      if (result === "win" && user === "グー") {
+        $('#character').css('background-image', "url('https://via.placeholder.com/200/cccccc?text=Sad')");
+      } else if (result === "win" && user === "チョキ") {
+        $('#character').css('background-image', "url('https://via.placeholder.com/200/cccccc?text=Happy')");
+      } else if (result === "win" && user === "パー") {
+        $('#character').css('background-image', "url('https://via.placeholder.com/200/cccccc?text=Neutral')");
+      } else if (result === "lose" && user === "グー") {
+        $('#character').css('background-image', "url('https://via.placeholder.com/200/cccccc?text=Happy')");
+      } else if (result === "lose" && user === "チョキ") {
+        $('#character').css('background-image', "url('https://via.placeholder.com/200/cccccc?text=Neutral')");
+      } else {
+        $('#character').css('background-image', "url('https://via.placeholder.com/200/cccccc?text=Neutral')");
+      }
+    }
+
+    function showResultText(result) {
+      let text = "", color = "";
+      if (result === "win") {
+        text = "勝ち！";
+        color = "#ff6b6b"; // 暖色
+      } else if (result === "lose") {
+        text = "負け！";
+        color = "#4dabf7"; // 寒色
+      } else {
+        text = "あいこ！";
+        color = "#999";
+      }
+      $('#result').text(text).css('color', color);
+    }
+
+    $('.janken-button').on('click', function () {
+      const userChoice = $(this).data('choice');
+      const enemyChoice = hands[Math.floor(Math.random() * 3)];
+      const result = getResult(userChoice, enemyChoice);
+
+      showResultText(result);
+      updateCharacterFace(result);
+    });
+  </script>
+</body>
+</html>
