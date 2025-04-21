@@ -120,17 +120,19 @@
 
     function updateCharacterFace(result) {
       if (result === "win" && user === "グー") {
-        $('#character').css('background-image', "url('https://via.placeholder.com/200/cccccc?text=Sad')");
+        $('#character').css('background-image', "url('win.jpg')");
       } else if (result === "win" && user === "チョキ") {
-        $('#character').css('background-image', "url('https://via.placeholder.com/200/cccccc?text=Happy')");
+        $('#character').css('background-image', "url('win.jpg')");
       } else if (result === "win" && user === "パー") {
-        $('#character').css('background-image', "url('https://via.placeholder.com/200/cccccc?text=Neutral')");
+        $('#character').css('background-image', "url('win.jpg')");
       } else if (result === "lose" && user === "グー") {
-        $('#character').css('background-image', "url('https://via.placeholder.com/200/cccccc?text=Happy')");
+        $('#character').css('background-image', "url('lose.jpg')");
       } else if (result === "lose" && user === "チョキ") {
-        $('#character').css('background-image', "url('https://via.placeholder.com/200/cccccc?text=Neutral')");
+        $('#character').css('background-image', "url('lose.jpg')");
+      } else if (result === "lose" && user === "パー") {
+        $('#character').css('background-image', "url('lose.jpg')");
       } else {
-        $('#character').css('background-image', "url('https://via.placeholder.com/200/cccccc?text=Neutral')");
+        $('#character').css('background-image', "url('draw.jpg')");
       }
     }
 
