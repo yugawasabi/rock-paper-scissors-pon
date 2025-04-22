@@ -48,7 +48,7 @@
     #character {
       width: 200px;
       height: 200px;
-      background-image: url('https://via.placeholder.com/200');
+      background-image: url('default.jpg');
       background-size: cover;
       margin: 20px auto;
       transition: background-image 0.3s;
@@ -121,28 +121,24 @@
     }
 
     function updateCharacterFace(result) {
-      // if (result === "win" && user === "グー") {
-      //   $('#character').css('background-image', "url('win.jpg')");
-      // } else if (result === "win" && user === "チョキ") {
-      //   $('#character').css('background-image', "url('win.jpg')");
-      // } else if (result === "win" && user === "パー") {
-      //   $('#character').css('background-image', "url('win.jpg')");
-      // } else if (result === "lose" && user === "グー") {
-      //   $('#character').css('background-image', "url('lose.jpg')");
-      // } else if (result === "lose" && user === "チョキ") {
-      //   $('#character').css('background-image', "url('lose.jpg')");
-      // } else if (result === "lose" && user === "パー") {
-      //   $('#character').css('background-image', "url('lose.jpg')");
-      // } else {
-      //   $('#character').css('background-image', "url('draw.jpg')");
-      // }
-
-      if (result === "win") {
-        $('#character').css('background-image', "url('win.jpg')");
-      } else if (result === "lose") {
-        $('#character').css('background-image', "url('lose.jpg')");
-      } else {
-        $('#character').css('background-image', "url('draw.jpg')");
+      if (result === "win" && user === "グー") {
+        $('#character').css('background-image', "url('win_r.jpg')");
+      } else if (result === "win" && user === "チョキ") {
+        $('#character').css('background-image', "url('win_s.jpg')");
+      } else if (result === "win" && user === "パー") {
+        $('#character').css('background-image', "url('win_p.jpg')");
+      } else if (result === "lose" && user === "グー") {
+        $('#character').css('background-image', "url('lose_r.jpg')");
+      } else if (result === "lose" && user === "チョキ") {
+        $('#character').css('background-image', "url('lose_s.jpg')");
+      } else if (result === "lose" && user === "パー") {
+        $('#character').css('background-image', "url('lose_p.jpg')");
+      } else if (result === "draw" && user === "グー"){
+        $('#character').css('background-image', "url('draw_r.jpg')");
+      } else if (result === "draw" && user === "チョキ"){
+        $('#character').css('background-image', "url('draw_s.jpg')");
+      } else if (result === "draw" && user === "パー"){
+        $('#character').css('background-image', "url('draw_p.jpg')");
       }
     }
 
@@ -158,7 +154,7 @@
         text = "あいこ！";
         color = "#999";
       }
-      $('#result').text(text).css('color', color);
+      $('#result').fadeIn(300).text(text).css('color', color);
     }
 
     $('.janken-button').on('click', function () {
@@ -166,8 +162,10 @@
       const enemyChoice = hands[Math.floor(Math.random() * 3)];
       const result = getResult(userChoice, enemyChoice);
 
-      showResultText(result);
       updateCharacterFace(result);
+      setTimeout(() => {
+        showResultText(result);  
+      }, 500);
     });
   </script>
 </body>
