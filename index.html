@@ -120,7 +120,7 @@
       return "lose";
     }
 
-    function updateCharacterFace(result) {
+    function updateCharacterFace(result, user) {
       if (result === "win" && user === "グー") {
         $('#character').css('background-image', "url('win_r.jpg')");
       } else if (result === "win" && user === "チョキ") {
