@@ -163,7 +163,7 @@
       const enemyChoice = hands[Math.floor(Math.random() * 3)];
       const result = getResult(userChoice, enemyChoice);
 
-      updateCharacterFace(result);
+      updateCharacterFace(result, userChoice); // ← ここを修正
       setTimeout(() => {
         showResultText(result);  
       }, 500);
