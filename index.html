@@ -123,17 +123,17 @@
 
     function updateCharacterFace(result, user) {
       if (result === "win" && user === "グー") {
-        $('#character').css('background-image', "url('win_r.jpg')");
-      } else if (result === "win" && user === "チョキ") {
-        $('#character').css('background-image', "url('win_s.jpg')");
-      } else if (result === "win" && user === "パー") {
-        $('#character').css('background-image', "url('win_p.jpg')");
-      } else if (result === "lose" && user === "グー") {
-        $('#character').css('background-image', "url('lose_r.jpg')");
-      } else if (result === "lose" && user === "チョキ") {
         $('#character').css('background-image', "url('lose_s.jpg')");
-      } else if (result === "lose" && user === "パー") {
+      } else if (result === "win" && user === "チョキ") {
         $('#character').css('background-image', "url('lose_p.jpg')");
+      } else if (result === "win" && user === "パー") {
+        $('#character').css('background-image', "url('lose_r.jpg')");
+      } else if (result === "lose" && user === "グー") {
+        $('#character').css('background-image', "url('win_p.jpg')");
+      } else if (result === "lose" && user === "チョキ") {
+        $('#character').css('background-image', "url('win_r.jpg')");
+      } else if (result === "lose" && user === "パー") {
+        $('#character').css('background-image', "url('win_s.jpg')");
       } else if (result === "draw" && user === "グー"){
         $('#character').css('background-image', "url('draw_r.jpg')");
       } else if (result === "draw" && user === "チョキ"){
